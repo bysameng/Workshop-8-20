@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/PlayerMotor.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Zarvot/Assets/Scripts/UI/Menu/MMenu/MMDrawer.cs">
     <Files>
-      <File FileName="Assets/Scripts/Gameplay/Enemy.cs" Line="22" Column="29" />
-      <File FileName="Assets/Scripts/Gameplay/CameraFollower.cs" Line="16" Column="20" />
-      <File FileName="Assets/Scripts/Gameplay/PlayerShooter.cs" Line="16" Column="23" />
-      <File FileName="Assets/Scripts/Gameplay/BulletController.cs" Line="13" Column="23" />
-      <File FileName="Assets/Scripts/Gameplay/PlayerMotor.cs" Line="22" Column="27" />
+      <File FileName="../Zarvot/Assets/Scripts/Gameplay/Weapons/CircleLaser/Circle.cs" Line="12" Column="26" />
+      <File FileName="../Zarvot/Assets/Scripts/UI/Menu/MMenu/MMDrawer.cs" Line="28" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -53,7 +53,7 @@ class GlobalFog extends PostEffectsBase {
 		CAMERA_ASPECT_RATIO = camera.aspect;
 	
 		var frustumCorners : Matrix4x4 = Matrix4x4.identity;		
-		var vec : Vector4;
+		//var vec : Vector4;
 		var corner : Vector3;
 	
 		var fovWHalf : float = CAMERA_FOV * 0.5f;

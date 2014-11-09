@@ -217,7 +217,7 @@ class Bloom extends PostEffectsBase {
 				var flareyRot : float = 1.0f * Mathf.Sin(flareRotation);
 				
 				var stretchWidth : float = (hollyStretchWidth * 1.0f / widthOverHeight) * oneOverBaseSize;
-				var stretchWidthY : float = hollyStretchWidth * oneOverBaseSize;				
+				//var stretchWidthY : float = hollyStretchWidth * oneOverBaseSize;				
 
 				blurAndFlaresMaterial.SetVector ("_Offsets", Vector4 (flareXRot, flareyRot, 0.0, 0.0));
 				blurAndFlaresMaterial.SetVector ("_Threshhold", Vector4 (lensflareThreshhold, 1.0f, 0.0f, 0.0f));

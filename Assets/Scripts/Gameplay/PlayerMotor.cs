@@ -23,9 +23,14 @@ public class PlayerMotor : MonoBehaviour {
 
 		//get side to side movement
 		movement.x = Input.GetAxisRaw("Horizontal") * acceleration;
-		if (!onGround){
-			movement.x /= 2f;
+		 
+		if (CheckLeft() && movement.x < 0){
+			movement.x =  velocity.x = 0;
 		}
+		if (CheckRight() && movement.x > 0){
+			movement.x =  velocity.x = 0;
+		}
+
 
 		if (Input.GetButtonDown("Jump") && onGround){
 			Jump();
@@ -37,10 +42,16 @@ public class PlayerMotor : MonoBehaviour {
 			movement.y = 100f;
 		}
 
+		if (CheckUp()){
+			velocity.y = movement.y = 0;
+			jumping = 0;
+		}
 
 		if (!onGround && jumping <= 0){
 			movement.y = gravity;
 		}
+
+
 
 
 
@@ -55,6 +66,7 @@ public class PlayerMotor : MonoBehaviour {
 		velocity.x = Mathf.Clamp(velocity.x, -speed, speed);
 		if (onGround){velocity.y = 0;}
 
+
 		//apply velocity
 		rigidbody.velocity = velocity;
 
@@ -64,13 +76,42 @@ public class PlayerMotor : MonoBehaviour {
 	bool CheckGround(){
 		Vector3 rayOriginLeft = transform.position;
 		Vector3 rayOriginRight = rayOriginLeft;
-		rayOriginLeft.x += collider.bounds.size.x/2;
-		rayOriginRight.x -= collider.bounds.size.x/2;
+		rayOriginLeft.x += collider.bounds.size.x/2-.2f;
+		rayOriginRight.x -= collider.bounds.size.x/2-.2f;
 		bool left = Physics.Raycast(rayOriginLeft, Vector3.down, collider.bounds.size.y / 2);
 		bool right = Physics.Raycast(rayOriginRight, Vector3.down, collider.bounds.size.y / 2);
 		return (left || right);
 	}
 
+	bool CheckUp(){
+		Vector3 rayOriginLeft = transform.position;
+		Vector3 rayOriginRight = rayOriginLeft;
+		rayOriginLeft.x += collider.bounds.size.x/2-.2f;
+		rayOriginRight.x -= collider.bounds.size.x/2-.2f;
+		bool left = Physics.Raycast(rayOriginLeft, Vector3.up, collider.bounds.size.y / 2);
+		bool right = Physics.Raycast(rayOriginRight, Vector3.up, collider.bounds.size.y / 2);
+		return (left || right);
+	}
+
+	bool CheckLeft(){
+		Vector3 rayOriginTop = transform.position;
+		Vector3 rayOriginBottom = rayOriginTop;
+		rayOriginTop.y += collider.bounds.size.y/2-.2f;
+		rayOriginBottom.y -= collider.bounds.size.y/2-.2f;
+		bool left = Physics.Raycast(rayOriginTop, Vector3.left, collider.bounds.size.x / 2);
+		bool right = Physics.Raycast(rayOriginBottom, Vector3.left, collider.bounds.size.x / 2);
+		return (left || right);
+	}
+
+	bool CheckRight(){
+		Vector3 rayOriginTop = transform.position;
+		Vector3 rayOriginBottom = rayOriginTop;
+		rayOriginTop.y += collider.bounds.size.y/2-.2f;
+		rayOriginBottom.y -= collider.bounds.size.y/2-.2f;
+		bool left = Physics.Raycast(rayOriginTop, Vector3.right, collider.bounds.size.x / 2);
+		bool right = Physics.Raycast(rayOriginBottom, Vector3.right, collider.bounds.size.x / 2);
+		return (left || right);
+	}
 
 
 	void Jump(){
@@ -78,17 +119,10 @@ public class PlayerMotor : MonoBehaviour {
 		jumping = .1f;
 	}
 
-	void OnCollisionEnter(Collision other){
-		if (other.contacts[0].normal == Vector3.down){
-			velocity.y = 0;
-		}
-		else if (other.contacts[0].normal != Vector3.up){
-			velocity.x = -velocity.x;
-		}
+	void OnCollisionStay(Collision other){
+	}
 
-		if (other.contacts[0].normal == Vector3.up){
-			onGround = true;
-		}
+	void OnCollisionEnter(Collision other){
 	}
 
 
